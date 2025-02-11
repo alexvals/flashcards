@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Flashcard</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
+    </head>
+    <body>
+        <div class="container">
+            <h2>Question: {{ card['question'] }}</h2>
+            <button id="show-answer-button" onclick="showAnswer()">Show Answer</button>
+            <p id="answer" style="display: none;">Answer: {{ card['answer'] }}</p>
+            <br>
+            {% if index + 1 < total %}
+                <a href="{{ url_for('flashcard', index=index + 1)}}">
+                    <button>Next Question</button>
+                </a>
+            {% else %}
+                <a href="{{ url_for('index')}}">
+                    <button>Back to Home</button>
+                </a>
+            {% endif %}
+        </div>
+        <script>
+            function showAnswer() {
+                document.getElementById('answer').style.display = 'block';
+                document.getElementById('show-answer-button').style.display = 'none';
+            }
+        </script>
+    </body>
+</html>
